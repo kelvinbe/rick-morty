@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+    .search-container {
+        @apply relative mb-4 flex w-full  items-center
+    }
+    .magify-container {
+        @apply flex jusify-center items-center
+    }
+
+
+}
