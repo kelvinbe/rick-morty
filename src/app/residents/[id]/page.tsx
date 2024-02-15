@@ -1,16 +1,27 @@
 "use client";
 import DetailsCard from "@/components/atoms/DetailsCard/DetailsCard";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import NotesForm from "@/components/Organisms/Form/Form";
 
+
+interface IResident {
+    id?: number
+    name?: string;
+    species?: string;
+    gender?: string;
+    origin?: { name: string } | undefined
+    image?: string;
+    status?: string;
+  
+}
+
 const Page = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<IResident[] | null>(null);
 
   const getData = async () => {
     const params = new URLSearchParams(window.location.search);
     const residentUrl = params.get("url");
-    const decodedUrl = decodeURIComponent(residentUrl);
+    const decodedUrl = decodeURIComponent(residentUrl || "");
 
     const res = await fetch(decodedUrl);
 
@@ -29,6 +40,7 @@ const Page = () => {
     fetchData();
   }, []);
 
+  const residentData = data?.[0] ?? {};
 
 
   return (
@@ -40,16 +52,16 @@ const Page = () => {
 
       <div className="pb-10">
         <DetailsCard
-          gender={data?.gender}
-          image={data?.image}
-          name={data?.name}
-          origin={data?.origin.name}
-          species={data?.species}
-          status={data?.status}
+          gender={residentData.gender}
+          image={residentData.image}
+          name={residentData.name}
+          origin={residentData.origin?.name}
+          species={residentData.species}
+          status={residentData.status}
         />
       </div>
       <div>
-        <NotesForm residentID={data?.id} />
+        <NotesForm residentID={residentData.id} />
       </div>
       </div>
 

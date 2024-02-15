@@ -1,24 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
+import React, {FormEventHandler, ChangeEventHandler, useState, useEffect } from "react";
 import NoteCard from "@/components/atoms/NotesCards/NotesCards";
 
 interface IForm {
-  residentID: number;
+  residentID?: number | undefined;
 }
+
+interface INote {
+  id: number | undefined, 
+  content: string
+}
+
+type NoteData = IForm & INote
 
 const NotesForm = (props: IForm) => {
   const [notes, setNotes] = useState("");
-  const [savedNotes, setSavedNotes] = useState([]);
+  const [savedNotes, setSavedNotes] = useState<NoteData[]>([]);
 
   const { residentID } = props;
 
 
-  const handleChange = (e) => {
-    setNotes(e.target.value);
+  const handleChange:ChangeEventHandler<HTMLTextAreaElement> = (event) => {
+    setNotes(event.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit:FormEventHandler<HTMLFormElement> = (event) => {
+    event.preventDefault();
     const addedNote = {
       id: residentID,
       content: notes,
@@ -57,7 +63,7 @@ const NotesForm = (props: IForm) => {
 
       {savedNotes.length !== 0 && (
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {savedNotes.map((note, index) => {
+          {savedNotes.map((note: INote, index) => {
            return <div className="pl-5 flex-wrap" key={index}>
               {residentID === Number(note?.id) &&
                 <NoteCard notes={note.content} />}

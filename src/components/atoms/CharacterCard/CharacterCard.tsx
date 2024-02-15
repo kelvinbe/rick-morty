@@ -12,7 +12,7 @@ interface ICharacterCard {
     url: string;
     species: string
     image: string
-    characterId: number;
+    characterId: number | undefined | string;
 }
 
 
