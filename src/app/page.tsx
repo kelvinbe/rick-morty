@@ -1,35 +1,65 @@
-import Image from "next/image";
+"use client";
+import React, { useState, useEffect } from "react";
 import Card from "@/components/atoms/cards/Card";
 import SearchBar from "@/components/molecules/SearchBar/SearchBar";
 
-async function getData() {
-  const res = await fetch('https://rickandmortyapi.com/api/location')
- 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
+
+
+export default function Home() {
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [resource, setResource] = useState('location')
+
+
+  async function getData(queryString?: string) {
+    let url = `https://rickandmortyapi.com/api/${resource}`;
+    if (queryString) {
+      url += `?${queryString}`;
+    }
+  
+    const res = await fetch(url);
+  
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+  
+    return res.json();
   }
- 
-  return res.json()
-}
 
-export default async function Home() {
-  const data = await getData()
+  useEffect(() => {
+    async function fetchData() {
+      const result = await getData();
+      setData(result.results);
+      setFilteredData(result.results);
+    }
+    fetchData();
+  }, []);
 
-  console.log(data.results)
+  const handleSearch = async (term: string) => {
+    setSearchTerm(term);
+    const query = `name=${term}`;
+    const data = await getData(query);
+    setFilteredData(data.results);
+  };
+
 
   return (
     <main className="flex flex-col py-20 px-20">
       <div className="pb-10">
-    <SearchBar />
-
+        <SearchBar chipResource={(value: string) => setResource(value)} searchTearm={searchTerm} handleSearch={handleSearch} />
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-4  gap-4 px-10">
-      {
-        data.results.map((location) => {
-          return <Card image='https://tecdn.b-cdn.net/img/new/standard/nature/182.jpg' name={location.name} type={location.type} residents={location.residents}/>
-
-        })
-      }
+        {filteredData.map((location) => {
+          return (
+            <Card
+              image="https://tecdn.b-cdn.net/img/new/standard/nature/182.jpg"
+              name={location.name}
+              type={location.type}
+              residents={location.residents}
+            />
+          );
+        })}
       </div>
     </main>
   );

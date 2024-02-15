@@ -19,7 +19,7 @@ const Card = (props: ICard) => {
   useEffect(() => {
     const getResident = async (residents) => {
       const residentData = [];
-      for (let i = 0; i < residents.length; i++) {
+      for (let i = 0; i < residents?.length; i++) {
         const res = await fetch(residents[i]);
         const data = await res.json();
         residentData.push(data);
