@@ -2,14 +2,14 @@
 import React, { useEffect, useState } from "react";
 import "./Card.css";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Spinner from "../Spinner/Spinner";
 
+
 interface ICard {
   loading?: boolean;
-  name?: string;
-  type?: string;
+  name: string;
+  type: string;
   residents?: string[];
   resource?: string;
   data?: {
@@ -23,6 +23,18 @@ interface ICard {
   }[];
 }
 
+interface IResident {
+  id?: number
+  name?: string;
+  species?: string;
+  gender?: string;
+  origin?: { name: string };
+  image?: string;
+  status?: string;
+  url: string
+
+}
+
 const Card = (props: ICard) => {
   const [resi, setRes] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -32,9 +44,9 @@ const Card = (props: ICard) => {
   const router = useRouter();
 
   useEffect(() => {
-    const getResident = async (residents) => {
+    const getResident = async (residents: any) => {
       setLoading(true);
-      const residentData = [];
+      const residentData: any = [];
       for (let i = 0; i < residents?.length; i++) {
         const res = await fetch(residents[i]);
         const data = await res.json();
@@ -52,7 +64,7 @@ const Card = (props: ICard) => {
       <div className="card-image-container">
         {resource === "location" && (
           <div className=" flex grid justify-center items-center grid-cols-2 gap-3 px-4 py-3">
-            {resi.slice(0, 4).map((resident, index) => {
+            {resi.slice(0, 4).map((resident: IResident, index) => {
               const characterId = resident.url.split("/").pop();
 
               return (
@@ -63,6 +75,7 @@ const Card = (props: ICard) => {
                     </div>
                   ) : (
                     <div
+                      key={index}
                       className="flex flex-col"
                       onClick={() =>
                         router.push(
@@ -73,7 +86,6 @@ const Card = (props: ICard) => {
                       }
                     >
                       <img
-                        key={resident}
                         className="rounded-t-lg"
                         src={resident.image}
                         width={90}
@@ -92,7 +104,7 @@ const Card = (props: ICard) => {
             })}
           </div>
         )}
-   
+
         {resource === "location" && resi.length === 0 && (
           <div className="flex flex-col justify-center items-center">
             {" "}

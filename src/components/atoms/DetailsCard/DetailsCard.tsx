@@ -1,12 +1,12 @@
 import React from "react";
 
 interface IDetailsCard {
-  name: string;
-  species: string;
-  gender: string;
-  origin: { name: string };
-  image: string;
-  status: string;
+  name: string  | undefined;
+  species: string  | undefined;
+  gender: string | undefined;
+  origin: string | undefined
+  image: string  | undefined;
+  status: string  | undefined;
 }
 
 const DetailsCard = (props: IDetailsCard) => {
@@ -34,7 +34,7 @@ const DetailsCard = (props: IDetailsCard) => {
           </div>
           <div className="mb-2">
             <span className="text-gray-700">
-              Origin: {origin?.name || "Unknown"}
+              Origin: {origin || "Unknown"}
             </span>
           </div>
         </div>

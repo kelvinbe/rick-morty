@@ -7,9 +7,44 @@ import Spinner from "@/components/atoms/Spinner/Spinner";
 import "../components/atoms/cards/Card.css";
 import CharacterCard from "@/components/atoms/CharacterCard/CharacterCard";
 
+
+
+
+export interface ICharacter {
+    image: string;
+    episode: string[];
+    gender: string;
+    id: number;
+    name: string;
+    status: string;
+    url: string;
+    species: string
+    characterId: string | undefined
+
+}
+
+
+interface ILocation {
+
+  id:	number,	
+  name:	string
+  type:	string	
+  dimension:	string
+  residents:	string[] 
+  url:	string 
+  created:	string	
+  }
+
+
+
+  type FilteredData = ILocation & ICharacter;
+
+
+
+
 export default function Home() {
-  const [data, setData] = useState([]);
-  const [filteredData, setFilteredData] = useState([]);
+  const [data, setData] = useState<ICharacter[]>([]);
+  const [filteredData, setFilteredData] = useState<FilteredData[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [resource, setResource] = useState("location");
   const [loading, setLoading] = useState(false);
@@ -78,16 +113,16 @@ export default function Home() {
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-4  gap-4 px-10">
           {(resource === "location" || resource === "episode") &&
-            filteredData.map((location) => {
+            filteredData.map((location, i) => {
               return (
                 <Card
+                  key={i}
                   data={filteredData}
                   resource={resource}
                   loading={loading}
-                  image={location.image}
                   name={location.name}
                   type={location.type}
-                  residents={location.residents}
+                  residents={location?.residents}
                 />
               );
             })}
@@ -99,16 +134,17 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-4  gap-4 px-10">
             {data.length > 0 &&
               data.map((character, i) => {
-                const characterId = character.url.split("/").pop();
+                const characterId: number | undefined | string = character.url.split("/").pop();
                 return (
                   <CharacterCard
+                    key={i}
                     characterId={characterId}
-                    name={character.name}
-                    id={character.id}
-                    image={character.image}
-                    species={character.species}
-                    status={character.status}
-                    url={character.url}
+                    name={character?.name}
+                    id={character?.id}
+                    image={character?.image}
+                    species={character?.species}
+                    status={character?.status}
+                    url={character?.url}
                   />
                 );
               })}
