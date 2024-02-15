@@ -15,8 +15,14 @@ async function getData() {
 export default async function Home() {
   const data = await getData()
 
+  console.log(data.results)
+
   return (
-    <main className="flex py-20">
+    <main className="flex flex-col py-20 px-20">
+      <div className="pb-10">
+    <SearchBar />
+
+      </div>
       <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-4  gap-4 px-10">
       {
         data.results.map((location) => {
