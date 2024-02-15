@@ -42,18 +42,22 @@ const SearchBar = (props: ISearch) => {
       <CiSearch size={30} />
     </span>
   </div>
-  <div className='w-[35rem] flex justify-row justify-between'>
-    <span>Search by:</span>
-    <div>
-    <Chips label='Location' onClick={() => chipResource('location')} />
-    </div>
-    <div>
-    <Chips label='Character' onClick={() => chipResource('character')} />
-    </div>
-    <div>
-    <Chips label='Episode' onClick={() => chipResource('episode')} />
-    </div>
-  </div>
+  <div className="w-full flex flex-col md:flex-row md:justify-center">
+        <span className="mb-2 md:mb-0">Search by:</span>
+        <div className="flex flex-wrap gap-2 md:gap-0 md:ml-2">
+          <div className='pl-5'>
+          <Chips label="Location" onClick={() => chipResource("location")} />
+          </div>
+          <div className='pl-5'>
+          <Chips label="Character" onClick={() => chipResource("character")} />
+          </div>
+          <div className='pl-5'>
+
+         
+          <Chips label="Episode" onClick={() => chipResource("episode")} />
+          </div>
+        </div>
+      </div>
 </div>
   )
 }

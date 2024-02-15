@@ -31,7 +31,6 @@ const NotesForm = (props: IForm) => {
 
   useEffect(() => {
     const savedNotes = JSON.parse(localStorage.getItem("savedNotes") || "[]");
-    console.log('saved',savedNotes)
     setSavedNotes(savedNotes);
   }, []);
 

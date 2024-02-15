@@ -29,7 +29,6 @@ const Page = () => {
     fetchData();
   }, []);
 
-  console.log('data', data)
 
 
   return (
