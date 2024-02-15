@@ -23,17 +23,23 @@ const Page = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await getData();
+      
       setData(data);
     };
     fetchData();
   }, []);
+
+  console.log('data', data)
+
 
   return (
     <main className="flex flex-col py-20 px-20">
       <div className="flex justify-center pb-10">
       <h1 className="text-2xl font-bold text-center text-gray-800 py-8">Spill The Beans</h1>
       </div>
-      <div>
+      <div className="flex flex-col">
+
+      <div className="pb-10">
         <DetailsCard
           gender={data?.gender}
           image={data?.image}
@@ -44,8 +50,10 @@ const Page = () => {
         />
       </div>
       <div>
-        <NotesForm />
+        <NotesForm residentID={data?.id} />
       </div>
+      </div>
+
     </main>
   );
 };

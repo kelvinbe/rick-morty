@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Card from "@/components/atoms/cards/Card";
 import SearchBar from "@/components/molecules/SearchBar/SearchBar";
 import Image from "next/image";
+import Spinner from "@/components/atoms/Spinner/Spinner";
 
 
 
@@ -11,6 +12,7 @@ export default function Home() {
   const [filteredData, setFilteredData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [resource, setResource] = useState('location')
+  const [loading, setLoading] = useState(false)
 
 
   async function getData(queryString?: string) {
@@ -29,10 +31,18 @@ export default function Home() {
   }
 
   useEffect(() => {
+
     async function fetchData() {
+      try {
+      setLoading(true)
       const result = await getData();
       setData(result.results);
       setFilteredData(result.results);
+      setLoading(false)
+      } catch (error) {
+        console.log(error)
+      }
+      
     }
     fetchData();
   }, []);
@@ -61,18 +71,20 @@ export default function Home() {
       <div className="pb-10">
         <SearchBar chipResource={(value: string) => setResource(value)} searchTearm={searchTerm} handleSearch={handleSearch} />
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-4  gap-4 px-10">
+     {loading ?  <div className="flex justify-center items-center">
+        <Spinner /> 
+          </div> :<div className="grid grid-cols-2 md:grid-cols-4 grid-rows-4  gap-4 px-10">
         {filteredData.map((location) => {
           return (
             <Card
-              image="https://tecdn.b-cdn.net/img/new/standard/nature/182.jpg"
+            loading={loading}
               name={location.name}
               type={location.type}
               residents={location.residents}
             />
           );
         })}
-      </div>
+      </div>}
     </main>
   );
 }
