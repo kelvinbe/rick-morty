@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "@/components/atoms/cards/Card";
 import SearchBar from "@/components/molecules/SearchBar/SearchBar";
+import Image from "next/image";
 
 
 
@@ -45,7 +46,18 @@ export default function Home() {
 
 
   return (
-    <main className="flex flex-col py-20 px-20">
+    <main className="flex flex-col py-5 px-20">
+      <div className="flex justify-center pb-1">
+        <div className='flex flex-col justify-center align-center'>
+          <div className="flex justify-center">
+        <Image src='/logo.png' width={100} height={100} alt='logo'/>
+        </div>
+      <span className="flex justify-center items-center text-xl font-bold">
+      Rick And Morty Peeps
+      </span>
+      </div>
+
+      </div>
       <div className="pb-10">
         <SearchBar chipResource={(value: string) => setResource(value)} searchTearm={searchTerm} handleSearch={handleSearch} />
       </div>

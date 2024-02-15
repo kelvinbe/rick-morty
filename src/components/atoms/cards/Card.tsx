@@ -1,8 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import "./Card.css";
-import { copyFileSync } from "fs";
 import Image from "next/image";
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+
+
 
 interface ICard {
   image: string;
@@ -15,6 +18,8 @@ const Card = (props: ICard) => {
   const [resi, setRes] = useState([]);
 
   const { image, name, type, residents } = props;
+
+  const router = useRouter()
 
   useEffect(() => {
     const getResident = async (residents) => {
@@ -37,8 +42,12 @@ const Card = (props: ICard) => {
       <div className="card-image-container">
         <div className=" flex grid justify-center items-center grid-cols-2 gap-3 px-4 py-3">
           {resi.slice(0, 4).map((resident, index) => {
+
+            const characterId = resident.url.split('/').pop();
+
             return (
-              <div className="flex flex-col">
+            // <Link  href={{pathname:`/residents/${characterId}`, query: resident.url}}>
+              <div className="flex flex-col" onClick={() => router.push(`/residents/${characterId}?url=${encodeURIComponent(resident.url)}`)}>
                 <img
                   key={resident}
                   className="rounded-t-lg"
@@ -53,6 +62,7 @@ const Card = (props: ICard) => {
                   <span>status: {resident.status}</span>
                 </div>
               </div>
+              // </Link>
             );
           })}
           {resi.length === 0 && <div className="flex justify-center items-center"> <Image  alt="Picture of the author"
