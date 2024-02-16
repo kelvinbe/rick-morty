@@ -45,6 +45,6 @@ To set up the project locall follow the folloing steps:
 
 ## Deployed Version Link
 
-# Here is a link to the deployed version of the web application 
+## Here is a link to the deployed version of the web application 
 
-[Link Text](https://rick-morty-seven-pi.vercel.app/)
+[rick-morty-peeps](https://rick-morty-seven-pi.vercel.app/)
