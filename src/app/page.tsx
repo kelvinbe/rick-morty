@@ -111,7 +111,7 @@ export default function Home() {
           <Spinner />
         </div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-4  gap-4 px-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-4  gap-4 px-10">
           {(resource === "location" || resource === "episode") &&
             filteredData.map((location, i) => {
               return (
@@ -131,9 +131,9 @@ export default function Home() {
       )}
       {resource === "character" && (
         <div>
-          <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-4  gap-4 px-10">
+          <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-4  gap-4 px-10">
             {data.length > 0 &&
-              data.map((character, i) => {
+              filteredData.map((character, i) => {
                 const characterId: number | undefined | string = character.url.split("/").pop();
                 return (
                   <CharacterCard

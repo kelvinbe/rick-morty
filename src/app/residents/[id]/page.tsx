@@ -16,7 +16,7 @@ interface IResident {
 }
 
 const Page = () => {
-  const [data, setData] = useState<IResident[] | null>(null);
+  const [data, setData] = useState<IResident | null>(null);
 
   const getData = async () => {
     const params = new URLSearchParams(window.location.search);
@@ -32,15 +32,18 @@ const Page = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getData();
-      
-      setData(data);
-    };
-    fetchData();
+      const fetchData = async () => {
+        const data = await getData();
+        setData(data);
+
+      };
+      fetchData();
+
+   
   }, []);
 
-  const residentData = data?.[0] ?? {};
+  const residentData = data ?? {};
+
 
 
   return (
