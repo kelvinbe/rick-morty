@@ -47,7 +47,7 @@ const Page = () => {
 
 
   return (
-    <main className="flex flex-col py-20 px-20">
+    <main className="flex flex-col py-20 px-10">
       <div className="flex justify-center pb-10">
       <h1 className="text-2xl font-bold text-center text-gray-800 py-8">Spill The Beans</h1>
       </div>

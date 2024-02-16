@@ -62,7 +62,7 @@ const Card = (props: ICard) => {
   return (
     <div className="card-container">
       <div className="card-image-container">
-        <span className="flex justify-center">Residents</span>
+        <span className="flex justify-center"> {resource === 'location' ? 'Residents': ''}</span>
         {resource === "location" && (
           <div  className=" flex grid justify-center items-center grid-cols-2 gap-3 px-4 py-3">
             {resi.slice(0, 4).map((resident: IResident, index) => {
@@ -96,7 +96,7 @@ const Card = (props: ICard) => {
                       />
                       <div className="flex flex-col text-xs">
                         <span>name: {resident.name}</span>
-                        <span>status: {resident.status}</span>
+                        <span className="flex">status: {resident.status === 'Alive' ? <>{resident.status} <img src='/heart.gif' width={20} height={20} /></> : resident.status === 'Dead' ? <>{resident.status} <img src='/skull.gif' width={15} height={15} /></> : resident.status}</span>
                       </div>
                     </div>
                   )}
