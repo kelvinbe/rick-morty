@@ -24,7 +24,7 @@ const DetailsCard = (props: IDetailsCard) => {
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-2">Name: {name}</div>
           <div className="mb-2">
-            <span className="text-gray-700">Status: {status}</span>
+          <span className="flex">status: {status === 'Alive' ? <>{status} <img src='/heart.gif' width={20} height={20} /></> : status === 'Dead' ? <>{status} <img src='/skull.gif' width={15} height={15} /></> : status}</span>
           </div>
           <div className="mb-2">
             <span className="text-gray-700">Species: {species}</span>

@@ -42,3 +42,9 @@ To set up the project locall follow the folloing steps:
 2. Cd into project using `cd rick-morty`
 3. Install requires dependencies by running `npm install`
 4. Start the project by running `npm run dev`
+
+## Deployed Version Link
+
+# Here is a link to the deployed version of the web application 
+
+[Link Text](https://rick-morty-seven-pi.vercel.app/)

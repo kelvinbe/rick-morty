@@ -5,7 +5,7 @@
 @layer components {
 
     .card-container {
-        @apply flex flex-col justify-between max-w-[18rem] max-h-[25rem] rounded-lg bg-white shadow-2xl
+        @apply flex flex-col justify-between max-w-[18rem] max-h-[27rem] rounded-lg bg-white shadow-2xl
     }
     .card-image-container {
         @apply relative overflow-hidden bg-cover bg-no-repeat
