@@ -1,7 +1,7 @@
-![Alt Text](/home/kelvin/next/rick-morty/public/morty.png)
 
 # Project Name
 Rick And Morty Peeps
+![Alt Text](https://github.com/kelvinbe/rick-morty/blob/fixes-code-cleanup/public/morty.png?raw=true)
 
 ## Overview
 
