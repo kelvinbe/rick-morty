@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Alt Text](/home/kelvin/next/rick-morty/public/morty.png)
 
-## Getting Started
+# Project Name
+Rick And Morty Peeps
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Rick And Morty peeps is a NextJS web application that fethes data from Rick and Morty Api and displays the location as well as the residents of that particular location. 
+We can search by location, character and episodes. It allows naviagtion to a specific resident and the ability to view details about said resident and add notes to that use.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Functionality
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Fetching data from a REST API endpoint.
+- Displays detailed information about each resident.
+- Search and Filter Data by Location, Character and Episodes
+- Allows users to add and save notes for each resident.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Design Decisions
 
-To learn more about Next.js, take a look at the following resources:
+- **REST API** - My descision in using REST API is mainly based on the fact that they are better to use when it comes to performing simple data fetching. Being resource oriented also makes using REST API a good choice while ethcing data from apis. I achived this by using the fetch method and getting the response with my data ready to use and manipulate to give desired out come.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Atomic Design Structure** - I decided to use the atomic design structure since it creates a very good blue print on how to view component building. It allows the creation of reusable compoents by breaking them down into smaller chunks which are the Atoms and Building them up to Molecules which are made up of atoms and finally to organisma which are fully fledged components. It makes design work fairly easy since coming up with an idea and breaking it down if fast and reliable in the long run.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Responsiveness** - Often a very important part of building nay application is the view that the user will most likely use a mobile device to acces the site hence the use of Tailwind CSS to achive this is very optimal with the use of grid display it allowed for out of the box responsiveness foe the application.
 
-## Deploy on Vercel
+- **State Management** - To handle the state management i moved to use the compnent state passing down props since the project is not monumentally big component state using use state would suffice and passing down props would not grow into prop drilling which is often good to avoid. In future though i do see the need to add Redux Tool Kit as a means to handle state with the benefit of a global state allowing for the easy handlding of sharing data between components.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Types Handling** - Working with Typescript is very beneficial by offering the service of adding types to our components using interface or type. This allowed me to have proper check of the data coming in and out of the components that way avoiding any unnecessary errors that may arrise by not explicitly setting the type.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Implementation Decisions
+
+- **LocalStorage**: To allow users to add notes to a specific user i moved to use local storage for the persistance of the data because it is easier for the client side persistance  and  storing the data for the user in this case being the notes alone i though it would be more prudent to use local storage. This would also reduce server load by not having frequent requests to a server if a database was to be used hence i found local storage as a good fit for the small implementation.
+
+- **Routing**: I moved to use the NextJS folder structure for routing since it is a very convininet and powerful tool. With the provision of next/navigaition's routing i was able to send each residents details via a url that i added to the params with url and decoded the url allowing for fetching of the data in the residents details page.
+
+
+## Project Set Up Guideline
+
+To set up the project locall follow the folloing steps:
+1. Clone the project using `git clone git@github.com:kelvinbe/rick-morty.git`
+2. Cd into project using `cd rick-morty`
+3. Install requires dependencies by running `npm install`
+4. Start the project by running `npm run dev`

@@ -62,15 +62,16 @@ const Card = (props: ICard) => {
   return (
     <div className="card-container">
       <div className="card-image-container">
+        <span className="flex justify-center">Residents</span>
         {resource === "location" && (
-          <div className=" flex grid justify-center items-center grid-cols-2 gap-3 px-4 py-3">
+          <div  className=" flex grid justify-center items-center grid-cols-2 gap-3 px-4 py-3">
             {resi.slice(0, 4).map((resident: IResident, index) => {
               const characterId = resident.url.split("/").pop();
 
               return (
                 <>
                   {loading ? (
-                    <div className="flex justify-center items-center">
+                    <div key={index} className="flex justify-center items-center">
                       <Spinner />
                     </div>
                   ) : (
