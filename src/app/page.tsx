@@ -50,7 +50,6 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [showToast, setShowToast] = useState(false)
   const [error, setError] = useState('')
-  const [close, setClose] = useState(false)
 
   async function getData(queryString?: string) {
     let url = `https://rickandmortyapi.com/api/${resource}`;
