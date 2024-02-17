@@ -2,7 +2,8 @@ import React from 'react';
 
 
 interface INotesCard {
-    notes: string
+    notes: string;
+    clicked: boolean
 }
 
 

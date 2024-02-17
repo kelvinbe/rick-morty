@@ -6,7 +6,7 @@ import Image from "next/image";
 import Spinner from "@/components/atoms/Spinner/Spinner";
 import "../components/atoms/cards/Card.css";
 import CharacterCard from "@/components/atoms/CharacterCard/CharacterCard";
-
+import Toast from "@/components/atoms/Toast/Toast";
 
 
 
@@ -48,17 +48,26 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
   const [resource, setResource] = useState("location");
   const [loading, setLoading] = useState(false);
+  const [showToast, setShowToast] = useState(false)
+  const [error, setError] = useState('')
+  const [close, setClose] = useState(false)
 
   async function getData(queryString?: string) {
     let url = `https://rickandmortyapi.com/api/${resource}`;
     if (queryString) {
       url += `?${queryString}`;
     }
-
     const res = await fetch(url);
-
     if (!res.ok) {
-      throw new Error("Failed to fetch data");
+      let error
+      const errorMessage = await res.text()
+      console.log(errorMessage)
+      if(errorMessage === '{"error":"There is nothing here"}'){
+          error = `Invalid Search try specifying your search by location,character or episode`
+      }
+      setError(error)
+      setShowToast(true)
+      throw new Error(`Failed to fetch data:", ${errorMessage}`);
     }
 
     return res.json();
@@ -68,11 +77,9 @@ export default function Home() {
     async function fetchData() {
       try {
         setLoading(true);
-        if (data.length === 0) {
         const result = await getData();
         setData(result.results);
         setFilteredData(result.results);
-        }
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -82,11 +89,23 @@ export default function Home() {
   }, [,resource]);
 
   const handleSearch = async (term: string) => {
-    setSearchTerm(term);
-    const query = `name=${term}`;
-    const data = await getData(query);
-    setFilteredData(data.results);
+    try {
+      setSearchTerm(term);
+      const query = `name=${term}`;
+      const data = await getData(query);
+      setFilteredData(data.results);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  useEffect(() => {
+    if(showToast){
+      setTimeout(() => {
+        setShowToast(false)
+      }, 3000)
+    }
+  },[error])
 
 
   return (
@@ -101,6 +120,9 @@ export default function Home() {
           </span>
         </div>
       </div>
+     {showToast && <div>
+      <Toast close={() => setShowToast(false)} message={error} />
+      </div>}
       <div className="pb-10">
         <SearchBar
           chipResource={(value: string) => setResource(value)}
