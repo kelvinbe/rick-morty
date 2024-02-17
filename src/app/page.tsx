@@ -61,7 +61,6 @@ export default function Home() {
     if (!res.ok) {
       let error = ''
       const errorMessage = await res.text()
-      console.log(errorMessage)
       if(errorMessage === '{"error":"There is nothing here"}'){
           error = `Invalid Search try specifying your search by location,character or episode`
       }
