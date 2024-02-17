@@ -59,7 +59,7 @@ export default function Home() {
     }
     const res = await fetch(url);
     if (!res.ok) {
-      let error
+      let error = ''
       const errorMessage = await res.text()
       console.log(errorMessage)
       if(errorMessage === '{"error":"There is nothing here"}'){
