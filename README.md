@@ -5,8 +5,8 @@ Rick And Morty Peeps
 
 ## Overview
 
-Rick And Morty peeps is a NextJS web application that fethes data from Rick and Morty Api and displays the location as well as the residents of that particular location. 
-We can search by location, character and episodes. It allows naviagtion to a specific resident and the ability to view details about said resident and add notes to that use.
+Rick And Morty peeps is a NextJS web application that fetches data from Rick and Morty Api and displays the location as well as the residents of that particular location. 
+We can search by location, character and episodes. It allows naviagtion to a specific resident and the ability to view details about said resident and add notes to that user.
 
 ## Functionality
 
