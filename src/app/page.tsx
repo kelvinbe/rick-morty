@@ -68,16 +68,18 @@ export default function Home() {
     async function fetchData() {
       try {
         setLoading(true);
+        if (data.length === 0) {
         const result = await getData();
         setData(result.results);
         setFilteredData(result.results);
+        }
         setLoading(false);
       } catch (error) {
         console.log(error);
       }
     }
     fetchData();
-  }, [resource]);
+  }, [,resource]);
 
   const handleSearch = async (term: string) => {
     setSearchTerm(term);
