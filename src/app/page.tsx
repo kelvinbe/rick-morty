@@ -7,6 +7,7 @@ import Spinner from "@/components/atoms/Spinner/Spinner";
 import "../components/atoms/cards/Card.css";
 import CharacterCard from "@/components/atoms/CharacterCard/CharacterCard";
 import Toast from "@/components/atoms/Toast/Toast";
+import Pagination from "@/components/Organisms/Pagination/Pagination";
 
 
 
@@ -173,6 +174,9 @@ export default function Home() {
           </div>
         </div>
       )}
+      <div className="mx-5 my-5">
+        <Pagination resource={resource} setFilteredData={setFilteredData} />
+      </div>
     </main>
   );
 }
