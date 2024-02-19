@@ -14,6 +14,7 @@ We can search by location, character and episodes. It allows naviagtion to a spe
 - Displays detailed information about each resident.
 - Search and Filter Data by Location, Character and Episodes
 - Allows users to add and save notes for each resident.
+- Pagination of pages 
 
 
 ## Design Decisions
@@ -27,6 +28,8 @@ We can search by location, character and episodes. It allows naviagtion to a spe
 - **State Management** - To handle the state management i moved to use the components state passing down props since the project is not monumentally big, component state using use state would suffice and passing down props would not grow into prop drilling, which is often good to avoid. In future though i do see the need to add Redux Tool Kit as a means to handle state with the benefit of a global state allowing for the easy handlding of sharing data between components.
 
 - **Types Handling** - Working with Typescript is very beneficial by offering the service of adding types to our components using interface or type. This allowed me to have proper check of the data coming in and out of the components that way avoiding any unnecessary errors that may arrise by not explicitly setting the type.
+
+- **Pagination** - Added pagination to allow for the smooth movement from one page to the next. This allows the user to access the different characters that are offered by the api and to view their status as well as their image and location where they currently reside. This was achived through a component that hits the api that allows for pages and count and next values from the api and updating the filtered data.
 
 ## Implementation Decisions
 
