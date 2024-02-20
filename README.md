@@ -25,7 +25,7 @@ We can search by location, character and episodes. It allows naviagtion to a spe
 
 - **Responsiveness** - Often a very important part of building any application is the view that the user will most likely use a mobile device to acces the site. Hence the use of Tailwind CSS to achive this is very optimal with the use of grid display it allowed for out of the box responsiveness for the application.
 
-- **State Management** - To handle the state management i moved to use the components state passing down props since the project is not monumentally big, component state using use state would suffice and passing down props would not grow into prop drilling, which is often good to avoid. In future though i do see the need to add Redux Tool Kit as a means to handle state with the benefit of a global state allowing for the easy handlding of sharing data between components.
+- **State Management** - To handle the state management i moved to use the components state passing down props since the project is not monumentally big, component state using use state would suffice and passing down props would not grow into prop drilling, which is often good to avoid. In future though i do see the need to add Redux Tool Kit as a means to handle state with the benefit of a global state allowing for the easy handling of sharing data between components.
 
 - **Types Handling** - Working with Typescript is very beneficial by offering the service of adding types to our components using interface or type. This allowed me to have proper check of the data coming in and out of the components that way avoiding any unnecessary errors that may arrise by not explicitly setting the type.
 
